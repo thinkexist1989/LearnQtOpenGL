@@ -67,7 +67,7 @@ void Widget::initializeGL()
     veo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
     f->glEnableVertexAttribArray(0);
-    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
+    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), reinterpret_cast<void*>(0));
 
     vbo->release();
     vao->release();
