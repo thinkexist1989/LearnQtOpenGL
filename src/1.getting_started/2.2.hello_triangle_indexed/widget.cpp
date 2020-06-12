@@ -1,5 +1,5 @@
 #include "widget.h"
-#include "./ui_widget.h"
+#include "ui_widget.h"
 
 float vertices[] = {
     0.5f, 0.5f, 0.0f,   // 右上角

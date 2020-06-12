@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.5)
+#cmake 3.10之后OpenGL才有import target
+cmake_minimum_required(VERSION 3.10)
 
 project(LearnQtOpenGL LANGUAGES CXX)
 
@@ -30,6 +31,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)
+find_package(Boost COMPONENTS date_time REQUIRED)
 
 set(CHAPTERS
     1.getting_started
@@ -38,10 +40,11 @@ set(CHAPTERS
 set(1.getting_started
     2.1.hello_triangle
     2.2.hello_triangle_indexed
+    3.1.shaders_uniform
 )
 
 if(WIN32)
-    set(LIBS Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL)
+    set(LIBS Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time) #注意，windows下import target只有OpenGL::GL
 elseif(UNIX AND NOT APPLE)
     set(LIBS Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL)
 else()

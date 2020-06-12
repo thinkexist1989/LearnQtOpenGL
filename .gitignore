@@ -1,3 +1,4 @@
 # ignores following folders
 *build*/
 .idea/
+CMakeLists.txt.user*
