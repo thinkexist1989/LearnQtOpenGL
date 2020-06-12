@@ -1,0 +1,5 @@
+# Hashes of file build rules.
+2aef0f75ea9c8428cf0b72c388479bf0 1.getting_started_2.1.hello_triangle_autogen/YWT33FTSSS/qrc_res.cpp
+a33fa7b756520c823e84f532a34e6c37 1.getting_started_2.2.hello_triangle_indexed_autogen/UEHDEOEHK2/qrc_res.cpp
+730523d2dd8c9c256d60f363096561e4 CMakeFiles/1.getting_started_2.1.hello_triangle_autogen
+5857708b36afd9078d473aaf63bb981d CMakeFiles/1.getting_started_2.2.hello_triangle_indexed_autogen

@@ -1,0 +1,6 @@
+/home/think/Documents/LearnQtOpenGL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/think/Documents/LearnQtOpenGL/cmake-build-debug/CMakeFiles/1.getting_started_2.2.hello_triangle_indexed.dir
+/home/think/Documents/LearnQtOpenGL/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/think/Documents/LearnQtOpenGL/cmake-build-debug/CMakeFiles/1.getting_started_2.1.hello_triangle.dir
+/home/think/Documents/LearnQtOpenGL/cmake-build-debug/CMakeFiles/1.getting_started_2.2.hello_triangle_indexed_autogen.dir
+/home/think/Documents/LearnQtOpenGL/cmake-build-debug/CMakeFiles/1.getting_started_2.1.hello_triangle_autogen.dir
