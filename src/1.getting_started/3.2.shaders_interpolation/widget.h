@@ -24,6 +24,11 @@ public:
     QOpenGLBuffer *vbo;
     QOpenGLBuffer *veo;
 
+    int uniGreen;
+
+    void setPolygonLineMode(bool b);
+    int PolygonMode;
+
 private:
     Ui::Widget *ui;
 

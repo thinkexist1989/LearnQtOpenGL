@@ -7,7 +7,7 @@ float vertices[]={
      0.0f,  0.5f, 0.0f
 };
 
-Widget::Widget(QOpenGLWidget *parent)
+Widget::Widget(QWidget *parent)
     : QOpenGLWidget(parent)
     , ui(new Ui::Widget)
 {

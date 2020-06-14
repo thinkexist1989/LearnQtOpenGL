@@ -29,7 +29,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
+find_package(Qt5 COMPONENTS Gui Widgets OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Boost COMPONENTS date_time REQUIRED)
 
@@ -38,15 +38,17 @@ set(CHAPTERS
 )
 
 set(1.getting_started
-    2.1.hello_triangle
-    2.2.hello_triangle_indexed
-    3.1.shaders_uniform
+        2.1.hello_triangle
+        2.2.hello_triangle_indexed
+        3.1.shaders_uniform
+        3.2.shaders_interpolation
+        3.4.widget_in_mainwindow
 )
 
 if(WIN32)
-    set(LIBS Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time) #注意，windows下import target只有OpenGL::GL
+    set(LIBS Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time) #注意，windows下import target只有OpenGL::GL
 elseif(UNIX AND NOT APPLE)
-    set(LIBS Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL)
+    set(LIBS Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL Boost::date_time)
 else()
     set(LIBS )
 endif(WIN32)

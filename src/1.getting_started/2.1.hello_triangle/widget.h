@@ -16,7 +16,7 @@ class Widget : public QOpenGLWidget
     Q_OBJECT
 
 public:
-    Widget(QOpenGLWidget *parent = nullptr);
+    Widget(QWidget *parent = nullptr);
     ~Widget();
 
     QOpenGLShaderProgram* psp;

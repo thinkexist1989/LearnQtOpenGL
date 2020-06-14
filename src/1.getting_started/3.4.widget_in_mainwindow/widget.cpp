@@ -18,6 +18,7 @@ unsigned int indices[] = {
 Widget::Widget(QWidget *parent)
     : QOpenGLWidget(parent)
     , ui(new Ui::Widget)
+    , PolygonMode(GL_FILL)
 {
     ui->setupUi(this);
 }
@@ -66,9 +67,7 @@ void Widget::initializeGL()
     veo->allocate(indices, 3*sizeof(GL_UNSIGNED_INT)*2);
     veo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
-    //glEnableVertexAttribArray(0)用于启用顶点属性（最多16个）
     f->glEnableVertexAttribArray(0);
-    //用来指定将VAO传入vertex着色器的layout (location=0) in vec3 aPos中
     f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), reinterpret_cast<void*>(0));
 
     vbo->release();
@@ -80,6 +79,18 @@ void Widget::initializeGL()
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [=]{update();});
     timer->start(50);
+}
+
+void Widget::setPolygonLineMode(bool b)
+{
+    if(b)
+    {
+        PolygonMode = GL_LINE;
+    }
+    else
+    {
+        PolygonMode = GL_FILL;
+    }
 }
 
 void Widget::resizeGL(int w, int h)
@@ -107,12 +118,12 @@ void Widget::paintGL()
     if(psp->isLinked()){
         psp->setUniformValue(uniGreen, 0.0f, greenValue, 0.0f, 1.0f);
         vao->bind();
-        qDebug() << "DRAW TRIANGLE" ;
+//        qDebug() << "DRAW TRIANGLE" ;
 //        f->glDrawArrays(GL_TRIANGLES, 0 ,3);
         //需要加载OpenGL库，否则glPolygonMode()编译时会找不到reference
 //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        glPolygonMode(GL_FRONT_AND_BACK, PolygonMode);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     }
 }
 

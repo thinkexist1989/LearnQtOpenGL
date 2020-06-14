@@ -13,7 +13,7 @@ unsigned int indices[] = {
     1, 2, 3  //第二个三角形
 };
 
-Widget::Widget(QOpenGLWidget *parent)
+Widget::Widget(QWidget *parent)
     : QOpenGLWidget(parent)
     , ui(new Ui::Widget)
 {
