@@ -66,9 +66,11 @@ foreach(CHAPTER ${CHAPTERS})
             "src/${CHAPTER}/${DEMO}/*.cpp"
             "src/${CHAPTER}/${DEMO}/*.ui"
             "src/${CHAPTER}/${DEMO}/*.qrc"
+            "resources/*.qrc"
         )
         set(NAME "${CHAPTER}_${DEMO}")
         add_executable(${NAME} ${SOURCE})
+        target_include_directories(${NAME} PUBLIC "src/${CHAPTER}/${DEMO}/")
         target_link_libraries(${NAME} ${LIBS})
     endforeach(DEMO)
 endforeach(CHAPTER)

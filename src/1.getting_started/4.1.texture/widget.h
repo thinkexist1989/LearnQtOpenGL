@@ -6,6 +6,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
+#include <QOpenGLTexture>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -23,6 +24,9 @@ public:
     QOpenGLVertexArrayObject *vao;
     QOpenGLBuffer *vbo;
     QOpenGLBuffer *veo;
+
+    QOpenGLTexture *texture1;
+    QOpenGLTexture *texture2;
 
     int uniGreen;
 
