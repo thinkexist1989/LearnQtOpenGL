@@ -43,12 +43,18 @@ set(1.getting_started
         3.1.shaders_uniform
         3.2.shaders_interpolation
         3.4.widget_in_mainwindow
+        4.1.texture
 )
 
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+add_library(stb_image "src/stb_image.cpp")
+set(LIBS stb_image)
+
 if(WIN32)
-    set(LIBS Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time) #注意，windows下import target只有OpenGL::GL
+    set(LIBS ${LIBS} Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time) #注意，windows下import target只有OpenGL::GL
 elseif(UNIX AND NOT APPLE)
-    set(LIBS Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL Boost::date_time)
+    set(LIBS ${LIBS} Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL Boost::date_time)
 else()
     set(LIBS )
 endif(WIN32)
