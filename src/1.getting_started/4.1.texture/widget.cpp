@@ -3,6 +3,8 @@
 #include <boost/date_time.hpp>
 #include <QTimer>
 #include <stb_image.h>
+#include <QMatrix4x4>
+#include <QTime>
 
 static float vertices[] = {
     // 右上角            //颜色            //纹理坐标
@@ -154,6 +156,15 @@ void Widget::paintGL()
 //        psp->setUniformValue(tex2, 1);
         psp->setUniformValue("texture1", 0); //分配纹理单元位置，默认为0， 最少16个
         psp->setUniformValue("texture2",2);  //
+
+        QMatrix4x4 trans;
+        trans.translate(QVector3D(0.5,-0.5, 0));
+        trans.rotate((float)QTime::currentTime().msecsSinceStartOfDay()/100.0, QVector3D(0.0, 0.0, 1.0));
+//        trans.scale(QVector3D(0.5,0.5,0.5));
+
+        psp->setUniformValue("transform", trans);
+
+
         vao->bind();
         //        qDebug() << "DRAW TRIANGLE" ;
         //        f->glDrawArrays(GL_TRIANGLES, 0 ,3);
@@ -162,6 +173,11 @@ void Widget::paintGL()
         texture1->bind(0); //必须在绘制之前绑定纹理，绑定位置值为0的纹理
         texture2->bind(2); //绑定位置值为2的纹理
         glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));
+
+        QMatrix4x4 trans2;
+        trans2.scale(sin(QTime::currentTime().msecsSinceStartOfDay()/100.0));
+        psp->setUniformValue("transform", trans2);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));
     }
 }
