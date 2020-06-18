@@ -35,6 +35,10 @@ public:
     void setPolygonLineMode(bool b);
     int PolygonMode;
 
+    QVector3D cameraPos;
+    QVector3D cameraFront;
+    QVector3D cameraUp;
+
 private:
     Ui::Widget *ui;
 
@@ -42,5 +46,8 @@ protected:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
+
+    void keyPressEvent(QKeyEvent *event) override;
 };
+
 #endif // WIDGET_H

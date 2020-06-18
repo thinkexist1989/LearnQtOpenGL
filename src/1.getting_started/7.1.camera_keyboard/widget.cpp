@@ -6,6 +6,7 @@
 #include <QMatrix4x4>
 #include <QTime>
 #include <random>
+#include <QKeyEvent>
 
 //static float vertices[] = {
 //    // 右上角            //颜色            //纹理坐标
@@ -83,9 +84,14 @@ static unsigned int indices[] = {
 Widget::Widget(QWidget *parent)
     : QOpenGLWidget(parent)
     , PolygonMode(GL_FILL)
+    , cameraPos(0.0, 0.0, 3.0)
+    , cameraFront(0.0, 0.0, -1.0)
+    , cameraUp(0.0, 1.0, 0.0)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    setFocus();
+    this->setFocusPolicy(Qt::StrongFocus);
 
     std::default_random_engine e;
     std::uniform_real_distribution<float> u(-1.0, 1.0);
@@ -228,7 +234,8 @@ void Widget::paintGL()
 
 
         QMatrix4x4 view;
-        view.lookAt(QVector3D(camX, 0.0, camZ), QVector3D(0.0, 0.0, 0.0), QVector3D(0.0,1.0,0.0));
+        view.lookAt(cameraPos, cameraPos+cameraFront, cameraUp);
+//        view.lookAt(QVector3D(camX, 0.0, camZ), QVector3D(0.0, 0.0, 0.0), QVector3D(0.0,1.0,0.0));
 //        view.translate(QVector3D(0.0,0.0,-3.0));
 
         QMatrix4x4 projection;
@@ -260,3 +267,26 @@ void Widget::paintGL()
     }
 }
 
+void Widget::keyPressEvent(QKeyEvent *event)
+{
+    float cameraSpeed = 0.05;
+    switch(event->key())
+    {
+    case Qt::Key_W:
+        qDebug() <<"W pressed!";
+        cameraPos += cameraSpeed * cameraFront;
+        break;
+    case Qt::Key_S:
+        cameraPos -= cameraSpeed * cameraFront;
+        qDebug() << "S pressed!";
+        break;
+    case Qt::Key_A:
+        cameraPos -= cameraSpeed * QVector3D::crossProduct(cameraFront, cameraUp).normalized();
+        break;
+    case Qt::Key_D:
+        cameraPos += cameraSpeed * QVector3D::crossProduct(cameraFront, cameraUp).normalized();
+        break;
+    default:
+        break;
+    }
+}
