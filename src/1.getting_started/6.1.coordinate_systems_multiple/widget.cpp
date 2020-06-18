@@ -5,16 +5,74 @@
 #include <stb_image.h>
 #include <QMatrix4x4>
 #include <QTime>
+#include <random>
+
+//static float vertices[] = {
+//    // 右上角            //颜色            //纹理坐标
+//    0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+//    // 右下角
+//    0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+//    // 左上角
+//    -0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+//    // 左下角
+//    -0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f
+//};
 
 static float vertices[] = {
-    // 右上角            //颜色            //纹理坐标
-    0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-    // 右下角
-    0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-    // 左上角
-    -0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-    // 左下角
-    -0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+};
+
+static QVector3D cubePositions[] = {
+  QVector3D( 0.0f,  0.0f,  0.0f),
+  QVector3D( 2.0f,  5.0f, -15.0f),
+  QVector3D(-1.5f, -2.2f, -2.5f),
+  QVector3D(-3.8f, -2.0f, -12.3f),
+  QVector3D( 2.4f, -0.4f, -3.5f),
+  QVector3D(-1.7f,  3.0f, -7.5f),
+  QVector3D( 1.3f, -2.0f, -2.5f),
+  QVector3D( 1.5f,  2.0f, -2.5f),
+  QVector3D( 1.5f,  0.2f, -1.5f),
+  QVector3D(-1.3f,  1.0f, -1.5f)
 };
 
 static unsigned int indices[] = {
@@ -28,6 +86,13 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    std::default_random_engine e;
+    std::uniform_real_distribution<float> u(-1.0, 1.0);
+    for(int i = 0; i < 10; i++)
+    {
+        rotAxis.push_back(QVector3D(u(e), u(e), u(e)));
+    }
 }
 
 Widget::~Widget()
@@ -59,29 +124,26 @@ void Widget::initializeGL()
     if(vao->create())
         vao->bind();
 
-    vbo = new QOpenGLBuffer;
+    vbo = new QOpenGLBuffer();
     vbo->create();
     vbo->bind();
     vbo->allocate(vertices, sizeof(vertices));
     vbo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
-    veo = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-    //create()相当于glGenBuffers(1,&EBO)
-    veo->create();
-    //bind()相当于glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO)
-    veo->bind();
-    //allocate()相当于glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    veo->allocate(indices, sizeof(indices));
-    veo->setUsagePattern(QOpenGLBuffer::StaticDraw);
+//    veo = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+//    //create()相当于glGenBuffers(1,&EBO)
+//    veo->create();
+//    //bind()相当于glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO)
+//    veo->bind();
+//    //allocate()相当于glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+//    veo->allocate(indices, sizeof(indices));
+//    veo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
     f->glEnableVertexAttribArray(0);
-    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(0));
+    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), reinterpret_cast<void*>(0));
 
     f->glEnableVertexAttribArray(1);
-    f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(3*sizeof(float)));
-
-    f->glEnableVertexAttribArray(2);
-    f->glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(6*sizeof(float)));
+    f->glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), reinterpret_cast<void*>(3*sizeof(float)));
 
 
 
@@ -105,6 +167,8 @@ void Widget::initializeGL()
 
     vbo->release();
     vao->release();
+
+    f->glEnable(GL_DEPTH_TEST);
 
     int nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
@@ -142,27 +206,32 @@ void Widget::paintGL()
 {
     // Draw the scene:
     QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
+
     f->glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    f->glClear(GL_COLOR_BUFFER_BIT);
+    f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //    static boost::posix_time::ptime start_time = boost::posix_time::microsec_clock::local_time();
     //    boost::posix_time::time_duration timeValue = boost::posix_time::microsec_clock::local_time() - start_time;
 
     if(psp->isLinked()){
-//        psp->setUniformValue(uniGreen, 0.0f, greenValue, 0.0f, 1.0f);
-//        int tex1 = psp->uniformLocation("texture1");
-//        int tex2 = psp->uniformLocation("texture2");
-//        psp->setUniformValue(tex1, 0);
-//        psp->setUniformValue(tex2, 1);
+        //        psp->setUniformValue(uniGreen, 0.0f, greenValue, 0.0f, 1.0f);
+        //        int tex1 = psp->uniformLocation("texture1");
+        //        int tex2 = psp->uniformLocation("texture2");
+        //        psp->setUniformValue(tex1, 0);
+        //        psp->setUniformValue(tex2, 1);
         psp->setUniformValue("texture1", 0); //分配纹理单元位置，默认为0， 最少16个
         psp->setUniformValue("texture2",2);  //
 
-//        QMatrix4x4 trans;
-//        trans.translate(QVector3D(0.5,-0.5, 0));
-//        trans.rotate((float)QTime::currentTime().msecsSinceStartOfDay()/100.0, QVector3D(0.0, 0.0, 1.0));
-//        trans.scale(QVector3D(0.5,0.5,0.5));
 
-//        psp->setUniformValue("transform", trans);
+
+        QMatrix4x4 view;
+        view.translate(QVector3D(0.0,0.0,-3.0));
+
+        QMatrix4x4 projection;
+        projection.perspective(45, (float)width()/height(), 0.1, 100);
+
+        psp->setUniformValue("view", view);
+        psp->setUniformValue("projection", projection);
 
 
         vao->bind();
@@ -173,12 +242,17 @@ void Widget::paintGL()
         texture1->bind(0); //必须在绘制之前绑定纹理，绑定位置值为0的纹理
         texture2->bind(2); //绑定位置值为2的纹理
         glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));
+//        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));
 
-//        QMatrix4x4 trans2;
-//        trans2.scale(sin(QTime::currentTime().msecsSinceStartOfDay()/100.0));
-//        psp->setUniformValue("transform", trans2);
-//        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));
+        for(int i = 0; i < 10; i++)
+        {
+            QMatrix4x4 model;
+            model.translate(cubePositions[i]);
+            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
+            psp->setUniformValue("model", model);
+            glDrawArrays(GL_TRIANGLES,0,36);
+        }
+
     }
 }
 

@@ -44,6 +44,11 @@ set(1.getting_started
         3.2.shaders_interpolation
         3.4.widget_in_mainwindow
         4.1.texture
+        5.1.transformations
+        6.1.coordinate_systems
+        6.1.coordinate_systems_multiple
+        7.1.camera
+        7.1.camera_keyboard
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
