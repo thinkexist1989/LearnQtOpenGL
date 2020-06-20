@@ -32,6 +32,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Gui Widgets OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Boost COMPONENTS date_time REQUIRED)
+find_package(Assimp REQUIRED)
 
 set(CHAPTERS
     1.getting_started
@@ -49,6 +50,7 @@ set(1.getting_started
         6.1.coordinate_systems_multiple
         7.1.camera
         7.1.camera_keyboard
+        7.1.camera_keyboard_mouse
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
