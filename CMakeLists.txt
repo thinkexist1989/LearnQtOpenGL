@@ -36,6 +36,7 @@ find_package(Assimp REQUIRED)
 
 set(CHAPTERS
     1.getting_started
+    2.lighting
 )
 
 set(1.getting_started
@@ -51,6 +52,11 @@ set(1.getting_started
         7.1.camera
         7.1.camera_keyboard
         7.1.camera_keyboard_mouse
+)
+
+set(2.lighting
+        1.colors
+        2.phone_lighting_model
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
