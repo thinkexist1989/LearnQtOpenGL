@@ -57,6 +57,8 @@ set(1.getting_started
 set(2.lighting
         1.colors
         2.phone_lighting_model
+        3.materials
+        4.lighting_map
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)

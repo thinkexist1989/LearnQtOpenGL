@@ -21,47 +21,48 @@
 //};
 
 static float vertices[] = {
-    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    // positions          // normals           // texture coords
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
 
-    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
 
-    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
 
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 };
 
 static QVector3D cubePositions[] = {
@@ -161,10 +162,13 @@ void Widget::initializeGL()
     //    veo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
     f->glEnableVertexAttribArray(0);
-    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), reinterpret_cast<void*>(0));
+    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(0));
 
     f->glEnableVertexAttribArray(1);
-    f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), reinterpret_cast<void*>(3*sizeof(float))); //最后一个参数是字节的位移！
+    f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(3*sizeof(float))); //最后一个参数是字节的位移！
+
+    f->glEnableVertexAttribArray(2);
+    f->glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(6*sizeof(float)));
 
     vbo->release();
     vao->release();
@@ -179,7 +183,7 @@ void Widget::initializeGL()
     vbo->bind();
 
     f->glEnableVertexAttribArray(0);
-    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), reinterpret_cast<void*>(0));
+    f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8*sizeof(float), reinterpret_cast<void*>(0));
 
     vbo->release();
     lightVAO->release();
@@ -187,7 +191,7 @@ void Widget::initializeGL()
 
 
     //准备纹理
-    texture1 = new QOpenGLTexture(QImage(":/res/textures/container.jpg").mirrored()); //由于图像坐标与纹理坐标y轴相反，需要mirrored()
+    texture1 = new QOpenGLTexture(QImage(":/res/textures/container2.png").mirrored()); //由于图像坐标与纹理坐标y轴相反，需要mirrored()
     //设置纹理环绕方式
     texture1->setWrapMode(QOpenGLTexture::DirectionS, QOpenGLTexture::Repeat);
     texture1->setWrapMode(QOpenGLTexture::DirectionT, QOpenGLTexture::Repeat);
@@ -195,13 +199,13 @@ void Widget::initializeGL()
     texture1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
     texture1->setMagnificationFilter(QOpenGLTexture::Linear);
 
-    texture2 = new QOpenGLTexture(QImage(":/res/textures/awesomeface.png").mirrored());
+//    texture2 = new QOpenGLTexture(QImage(":/res/textures/awesomeface.png").mirrored());
 
-    texture2->setWrapMode(QOpenGLTexture::DirectionS, QOpenGLTexture::Repeat);
-    texture2->setWrapMode(QOpenGLTexture::DirectionT, QOpenGLTexture::Repeat);
-    //设置纹理过滤
-    texture2->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
-    texture2->setMagnificationFilter(QOpenGLTexture::Linear);
+//    texture2->setWrapMode(QOpenGLTexture::DirectionS, QOpenGLTexture::Repeat);
+//    texture2->setWrapMode(QOpenGLTexture::DirectionT, QOpenGLTexture::Repeat);
+//    //设置纹理过滤
+//    texture2->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+//    texture2->setMagnificationFilter(QOpenGLTexture::Linear);
 
 
 
@@ -249,14 +253,14 @@ void Widget::paintGL()
 
     //    static boost::posix_time::ptime start_time = boost::posix_time::microsec_clock::local_time();
     //    boost::posix_time::time_duration timeValue = boost::posix_time::microsec_clock::local_time() - start_time;
-
+        psp->bind();
 //    if(psp->isLinked()){
         //        psp->setUniformValue(uniGreen, 0.0f, greenValue, 0.0f, 1.0f);
-        //        int tex1 = psp->uniformLocation("texture1");
-        //        int tex2 = psp->uniformLocation("texture2");
-        //        psp->setUniformValue(tex1, 0);
+//                int tex1 = psp->uniformLocation("material.diffuse");
+//        //        int tex2 = psp->uniformLocation("texture2");
+//                psp->setUniformValue(tex1, 0);
         //        psp->setUniformValue(tex2, 1);
-//        psp->setUniformValue("texture1", 0); //分配纹理单元位置，默认为0， 最少16个
+        psp->setUniformValue("material.diffuse", 0); //分配纹理单元位置，默认为0， 最少16个
 //        psp->setUniformValue("texture2",2);  //将片段着色器中的uniform sampler2D texture1 绑定到位置0，这样，只要QOpenGLTexture::bind(0)，既可将纹理传入着色器
 
         float radius = 10.0f;
@@ -272,16 +276,34 @@ void Widget::paintGL()
         QMatrix4x4 projection;
         projection.perspective(fov, (float)width()/height(), 0.1, 100);
 
-        psp->bind();
+
         psp->setUniformValue("view", view);
         psp->setUniformValue("projection", projection);
 
-        //
-        psp->setUniformValue("objectColor", QVector3D(1.0, 0.5, 0.31));
+//        psp->setUniformValue("objectColor", QVector3D(1.0, 0.5, 0.31));
         psp->setUniformValue("lightColor", QVector3D(1.0, 1.0, 1.0));
 
-        psp->setUniformValue("lightPos", lightPos);
+        QVector3D lightColor;
+        lightColor.setX(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 2.0));
+        lightColor.setY(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 0.7));
+        lightColor.setZ(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 1.3));
+
+        QVector3D diffuseColor = lightColor * QVector3D(0.5f, 0.5f, 0.5f);
+        QVector3D ambientColor = diffuseColor * QVector3D(0.2f, 0.2f, 0.2f);
+
+
+//        psp->setUniformValue("lightPos", lightPos);
+        psp->setUniformValue("light.position", lightPos);
+        psp->setUniformValue("light.ambient", 0.2f, 0.2f, 0.2f);
+        psp->setUniformValue("light.diffuse",0.5f, 0.5f, 0.5f);
+        psp->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+
         psp->setUniformValue("viewPos", cameraPos);
+
+//        psp->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
+//        psp->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
+        psp->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f);
+        psp->setUniformValue("material.shininess", 32.0f);
 
 
         vao->bind();
@@ -289,7 +311,7 @@ void Widget::paintGL()
         //        f->glDrawArrays(GL_TRIANGLES, 0 ,3);
         //需要加载OpenGL库，否则glPolygonMode()编译时会找不到reference
         //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-//        texture1->bind(0); //必须在绘制之前绑定纹理，绑定位置值为0的纹理
+        texture1->bind(0); //必须在绘制之前绑定纹理，绑定位置值为0的纹理
 //        texture2->bind(2); //绑定位置值为2的纹理
         glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
         //        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));

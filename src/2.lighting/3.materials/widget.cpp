@@ -276,12 +276,30 @@ void Widget::paintGL()
         psp->setUniformValue("view", view);
         psp->setUniformValue("projection", projection);
 
-        //
-        psp->setUniformValue("objectColor", QVector3D(1.0, 0.5, 0.31));
+//        psp->setUniformValue("objectColor", QVector3D(1.0, 0.5, 0.31));
         psp->setUniformValue("lightColor", QVector3D(1.0, 1.0, 1.0));
 
-        psp->setUniformValue("lightPos", lightPos);
+        QVector3D lightColor;
+        lightColor.setX(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 2.0));
+        lightColor.setY(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 0.7));
+        lightColor.setZ(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 1.3));
+
+        QVector3D diffuseColor = lightColor * QVector3D(0.5f, 0.5f, 0.5f);
+        QVector3D ambientColor = diffuseColor * QVector3D(0.2f, 0.2f, 0.2f);
+
+
+//        psp->setUniformValue("lightPos", lightPos);
+        psp->setUniformValue("light.position", lightPos);
+        psp->setUniformValue("light.ambient", ambientColor);
+        psp->setUniformValue("light.diffuse", diffuseColor);
+        psp->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+
         psp->setUniformValue("viewPos", cameraPos);
+
+        psp->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
+        psp->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
+        psp->setUniformValue("material.specular", 0.5f,0.5f, 0.5f);
+        psp->setUniformValue("material.shininess", 32.0f);
 
 
         vao->bind();
