@@ -29,6 +29,7 @@ public:
 
     QOpenGLTexture *texture1;
     QOpenGLTexture *texture2;
+    QOpenGLTexture *texture3;
 
     std::vector<QVector3D> rotAxis;
 

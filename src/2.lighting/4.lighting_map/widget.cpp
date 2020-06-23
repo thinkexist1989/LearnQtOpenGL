@@ -199,13 +199,20 @@ void Widget::initializeGL()
     texture1->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
     texture1->setMagnificationFilter(QOpenGLTexture::Linear);
 
-//    texture2 = new QOpenGLTexture(QImage(":/res/textures/awesomeface.png").mirrored());
+    texture2 = new QOpenGLTexture(QImage(":/res/textures/container2_specular.png").mirrored());
 
-//    texture2->setWrapMode(QOpenGLTexture::DirectionS, QOpenGLTexture::Repeat);
-//    texture2->setWrapMode(QOpenGLTexture::DirectionT, QOpenGLTexture::Repeat);
-//    //设置纹理过滤
-//    texture2->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
-//    texture2->setMagnificationFilter(QOpenGLTexture::Linear);
+    texture2->setWrapMode(QOpenGLTexture::DirectionS, QOpenGLTexture::Repeat);
+    texture2->setWrapMode(QOpenGLTexture::DirectionT, QOpenGLTexture::Repeat);
+    //设置纹理过滤
+    texture2->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    texture2->setMagnificationFilter(QOpenGLTexture::Linear);
+
+    texture3 = new QOpenGLTexture(QImage(":/res/textures/matrix.jpg").mirrored());
+    texture3->setWrapMode(QOpenGLTexture::DirectionS, QOpenGLTexture::Repeat);
+    texture3->setWrapMode(QOpenGLTexture::DirectionT, QOpenGLTexture::Repeat);
+
+    texture3->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+    texture3->setMagnificationFilter(QOpenGLTexture::Linear);
 
 
 
@@ -261,6 +268,8 @@ void Widget::paintGL()
 //                psp->setUniformValue(tex1, 0);
         //        psp->setUniformValue(tex2, 1);
         psp->setUniformValue("material.diffuse", 0); //分配纹理单元位置，默认为0， 最少16个
+        psp->setUniformValue("material.specular", 1);
+        psp->setUniformValue("material.emission", 2);
 //        psp->setUniformValue("texture2",2);  //将片段着色器中的uniform sampler2D texture1 绑定到位置0，这样，只要QOpenGLTexture::bind(0)，既可将纹理传入着色器
 
         float radius = 10.0f;
@@ -302,7 +311,7 @@ void Widget::paintGL()
 
 //        psp->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
 //        psp->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
-        psp->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f);
+//        psp->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f);
         psp->setUniformValue("material.shininess", 32.0f);
 
 
@@ -312,7 +321,8 @@ void Widget::paintGL()
         //需要加载OpenGL库，否则glPolygonMode()编译时会找不到reference
         //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         texture1->bind(0); //必须在绘制之前绑定纹理，绑定位置值为0的纹理
-//        texture2->bind(2); //绑定位置值为2的纹理
+        texture2->bind(1); //绑定位置值为2的纹理
+        texture3->bind(2); //放射贴图
         glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
         //        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, reinterpret_cast<void*>(0));
 

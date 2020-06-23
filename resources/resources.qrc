@@ -3,5 +3,7 @@
         <file>textures/container.jpg</file>
         <file>textures/awesomeface.png</file>
         <file>textures/container2.png</file>
+        <file>textures/container2_specular.png</file>
+        <file>textures/matrix.jpg</file>
     </qresource>
 </RCC>

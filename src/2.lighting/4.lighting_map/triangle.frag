@@ -15,7 +15,9 @@ struct Material {
     vec3 ambient; //环境光几乎在任何情况下都和漫反射颜色一致
 
     sampler2D diffuse;
-    vec3 specular;
+    sampler2D specular;
+    sampler2D emission;
+
     float shininess;
 };
 
@@ -50,8 +52,10 @@ void main(void)
     vec3 reflectDir = reflect(-lightDir, norm); //求解镜面光反射，reflect函数要求第一个向量为从广源指向片段位置的向量，因此将lightDir取反
 
     float spec = pow(max(dot(reflectDir, viewDir), 0.0), material.shininess); //32次幂是反光度， 反光度越高，发射光能力越强，散射越少
-    vec3 specular = light.specular * (spec * material.specular);
+    vec3 specular = light.specular * spec * texture2D(material.specular, TexCoords).rgb;
 
-    vec3 result = ambient + diffuse + specular;
+    vec3 emission = texture2D(material.emission, TexCoords).rgb;
+
+    vec3 result = ambient + diffuse + specular + emission;
     FragColor = vec4(result, 1.0f);
 }
