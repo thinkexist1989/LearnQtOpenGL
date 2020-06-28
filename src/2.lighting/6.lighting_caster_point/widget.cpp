@@ -308,9 +308,9 @@ void Widget::paintGL()
         psp->setUniformValue("light.diffuse",0.5f, 0.5f, 0.5f);
         psp->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
 
-//        psp->setUniformValue("light.constant", 1.0f);
-//        psp->setUniformValue("light.linear", 0.09f);
-//        psp->setUniformValue("light.quadratic", 0.032f);
+        psp->setUniformValue("light.constant", 1.0f);
+        psp->setUniformValue("light.linear", 0.09f);
+        psp->setUniformValue("light.quadratic", 0.032f);
 
         psp->setUniformValue("viewPos", cameraPos);
 
@@ -335,7 +335,7 @@ void Widget::paintGL()
         {
             QMatrix4x4 model;
             model.translate(cubePositions[i]);
-            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
+//            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
             psp->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES,0,36);
         }

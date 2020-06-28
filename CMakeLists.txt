@@ -60,6 +60,9 @@ set(2.lighting
         3.materials
         4.lighting_map
         5.lighting_caster
+        6.lighting_caster_point
+        7.lighting_caster_spot
+        8.multiple_lights
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)

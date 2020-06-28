@@ -255,7 +255,7 @@ void Widget::paintGL()
     // Draw the scene:
     QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
 
-    f->glClearColor(0, 0, 0, 1.0f);
+    f->glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //    static boost::posix_time::ptime start_time = boost::posix_time::microsec_clock::local_time();
@@ -290,7 +290,7 @@ void Widget::paintGL()
         psp->setUniformValue("projection", projection);
 
 //        psp->setUniformValue("objectColor", QVector3D(1.0, 0.5, 0.31));
-        psp->setUniformValue("lightColor", QVector3D(1.0, 1.0, 1.0));
+//        psp->setUniformValue("lightColor", QVector3D(1.0, 1.0, 1.0));
 
         QVector3D lightColor;
         lightColor.setX(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 2.0));
@@ -302,15 +302,18 @@ void Widget::paintGL()
 
 
 //        psp->setUniformValue("lightPos", lightPos);
-//        psp->setUniformValue("light.position", lightPos);
-        psp->setUniformValue("light.direction", -0.2f, -1.0f, -0.3f);
+        psp->setUniformValue("light.position", cameraPos);
+        psp->setUniformValue("light.cutOff", cos(qDegreesToRadians(12.5f)));
+        psp->setUniformValue("light.outerCutOff", cos(qDegreesToRadians(17.5f)));
+
+        psp->setUniformValue("light.direction",cameraFront);
         psp->setUniformValue("light.ambient", 0.2f, 0.2f, 0.2f);
         psp->setUniformValue("light.diffuse",0.5f, 0.5f, 0.5f);
         psp->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
 
-//        psp->setUniformValue("light.constant", 1.0f);
-//        psp->setUniformValue("light.linear", 0.09f);
-//        psp->setUniformValue("light.quadratic", 0.032f);
+        psp->setUniformValue("light.constant", 1.0f);
+        psp->setUniformValue("light.linear", 0.09f);
+        psp->setUniformValue("light.quadratic", 0.032f);
 
         psp->setUniformValue("viewPos", cameraPos);
 
@@ -335,7 +338,7 @@ void Widget::paintGL()
         {
             QMatrix4x4 model;
             model.translate(cubePositions[i]);
-            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
+//            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
             psp->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES,0,36);
         }

@@ -22,47 +22,47 @@
 
 static float vertices[] = {
     // positions          // normals           // texture coords
-    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
 
-    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
 
-    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
 
-     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
 
-    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
 
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
 };
 
 static QVector3D cubePositions[] = {
@@ -76,6 +76,13 @@ static QVector3D cubePositions[] = {
     QVector3D( 1.5f,  2.0f, -2.5f),
     QVector3D( 1.5f,  0.2f, -1.5f),
     QVector3D(-1.3f,  1.0f, -1.5f)
+};
+
+static QVector3D pointLightPositions[] = {
+    QVector3D(0.7f,  0.2f,  2.0f),
+    QVector3D(2.3f, -3.3f, -4.0f),
+    QVector3D(-4.0f, 2.0f, -12.0f),
+    QVector3D(0.0f,  0.0f, -3.0f)
 };
 
 static unsigned int indices[] = {
@@ -255,7 +262,7 @@ void Widget::paintGL()
     // Draw the scene:
     QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
 
-    f->glClearColor(0, 0, 0, 1.0f);
+    f->glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //    static boost::posix_time::ptime start_time = boost::posix_time::microsec_clock::local_time();
@@ -270,6 +277,9 @@ void Widget::paintGL()
         psp->setUniformValue("material.diffuse", 0); //分配纹理单元位置，默认为0， 最少16个
         psp->setUniformValue("material.specular", 1);
         psp->setUniformValue("material.emission", 2);
+
+        psp->setUniformValue("material.shininess", 32.0f);
+
 //        psp->setUniformValue("texture2",2);  //将片段着色器中的uniform sampler2D texture1 绑定到位置0，这样，只要QOpenGLTexture::bind(0)，既可将纹理传入着色器
 
         float radius = 10.0f;
@@ -289,35 +299,56 @@ void Widget::paintGL()
         psp->setUniformValue("view", view);
         psp->setUniformValue("projection", projection);
 
-//        psp->setUniformValue("objectColor", QVector3D(1.0, 0.5, 0.31));
-        psp->setUniformValue("lightColor", QVector3D(1.0, 1.0, 1.0));
-
-        QVector3D lightColor;
-        lightColor.setX(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 2.0));
-        lightColor.setY(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 0.7));
-        lightColor.setZ(sin(QTime::currentTime().msecsSinceStartOfDay()/1000.0 * 1.3));
-
-        QVector3D diffuseColor = lightColor * QVector3D(0.5f, 0.5f, 0.5f);
-        QVector3D ambientColor = diffuseColor * QVector3D(0.2f, 0.2f, 0.2f);
+        psp->setUniformValue("dirLight.direction", -0.2f, -1.0f, -0.3f);
+        psp->setUniformValue("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+        psp->setUniformValue("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+        psp->setUniformValue("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
 
-//        psp->setUniformValue("lightPos", lightPos);
-//        psp->setUniformValue("light.position", lightPos);
-        psp->setUniformValue("light.direction", -0.2f, -1.0f, -0.3f);
-        psp->setUniformValue("light.ambient", 0.2f, 0.2f, 0.2f);
-        psp->setUniformValue("light.diffuse",0.5f, 0.5f, 0.5f);
-        psp->setUniformValue("light.specular", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("pointLights[0].position", pointLightPositions[0]);
+        psp->setUniformValue("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
+        psp->setUniformValue("pointLights[0].diffuse", 0.8f, 0.8f, 0.8f);
+        psp->setUniformValue("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("pointLights[0].constant", 1.0f);
+        psp->setUniformValue("pointLights[0].linear", 0.09f);
+        psp->setUniformValue("pointLights[0].quadratic", 0.032f);
 
-//        psp->setUniformValue("light.constant", 1.0f);
-//        psp->setUniformValue("light.linear", 0.09f);
-//        psp->setUniformValue("light.quadratic", 0.032f);
+        psp->setUniformValue("pointLights[1].position", pointLightPositions[1]);
+        psp->setUniformValue("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
+        psp->setUniformValue("pointLights[1].diffuse", 0.8f, 0.8f, 0.8f);
+        psp->setUniformValue("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("pointLights[1].constant", 1.0f);
+        psp->setUniformValue("pointLights[1].linear", 0.09f);
+        psp->setUniformValue("pointLights[1].quadratic", 0.032f);
+
+        psp->setUniformValue("pointLights[2].position", pointLightPositions[2]);
+        psp->setUniformValue("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
+        psp->setUniformValue("pointLights[2].diffuse", 0.8f, 0.8f, 0.8f);
+        psp->setUniformValue("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("pointLights[2].constant", 1.0f);
+        psp->setUniformValue("pointLights[2].linear", 0.09f);
+        psp->setUniformValue("pointLights[2].quadratic", 0.032f);
+
+        psp->setUniformValue("pointLights[3].position", pointLightPositions[3]);
+        psp->setUniformValue("pointLights[3].ambient", 0.05f, 0.05f, 0.05f);
+        psp->setUniformValue("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
+        psp->setUniformValue("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("pointLights[3].constant", 1.0f);
+        psp->setUniformValue("pointLights[3].linear", 0.09f);
+        psp->setUniformValue("pointLights[3].quadratic", 0.032f);
+
+        psp->setUniformValue("spotLight.position", cameraPos);
+        psp->setUniformValue("spotLight.direction", cameraFront);
+        psp->setUniformValue("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+        psp->setUniformValue("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("spotLight.specular", 1.0f, 1.0f, 1.0f);
+        psp->setUniformValue("spotLight.constant", 1.0f);
+        psp->setUniformValue("spotLight.linear", 0.09f);
+        psp->setUniformValue("spotLight.quadratic", 0.032f);
+        psp->setUniformValue("spotLight.cutOff", cos(qDegreesToRadians(12.5f)));
+        psp->setUniformValue("spotLight.outerCutOff", cos(qDegreesToRadians(15.0f)));
 
         psp->setUniformValue("viewPos", cameraPos);
-
-//        psp->setUniformValue("material.ambient", 1.0f, 0.5f, 0.31f);
-//        psp->setUniformValue("material.diffuse", 1.0f, 0.5f, 0.31f);
-//        psp->setUniformValue("material.specular", 0.5f, 0.5f, 0.5f);
-        psp->setUniformValue("material.shininess", 32.0f);
 
 
         vao->bind();
@@ -335,7 +366,8 @@ void Widget::paintGL()
         {
             QMatrix4x4 model;
             model.translate(cubePositions[i]);
-            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
+//            model.rotate((float)QTime::currentTime().msecsSinceStartOfDay()*(-50.0)/1000.0, rotAxis[i]);
+            model.rotate(20.0f, rotAxis[i]);
             psp->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES,0,36);
         }
@@ -343,17 +375,19 @@ void Widget::paintGL()
 //    }
         lightVAO->bind();
 //    if(pspLight->isLinked()){
-        QMatrix4x4 model;
-        model.translate(lightPos);
-        model.scale(0.2);
-        pspLight->bind();
-        pspLight->setUniformValue("model", model);
-        pspLight->setUniformValue("projection", projection);
-        pspLight->setUniformValue("view", view);
+        for(int i = 0; i < 4; i++)
+        {
+            QMatrix4x4 model;
+            model.translate(pointLightPositions[i]);
+            model.scale(0.2);
+            pspLight->bind();
+            pspLight->setUniformValue("model", model);
+            pspLight->setUniformValue("projection", projection);
+            pspLight->setUniformValue("view", view);
 
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
 
-
-        glDrawArrays(GL_TRIANGLES, 0, 36);
 //    }
 }
 
