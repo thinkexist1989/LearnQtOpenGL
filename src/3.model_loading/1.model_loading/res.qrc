@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/shaders">
+        <file>lightcube.frag</file>
+        <file>lightcube.vert</file>
+        <file>model_loading.frag</file>
+        <file>model_loading.vert</file>
+    </qresource>
+</RCC>

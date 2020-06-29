@@ -37,6 +37,7 @@ find_package(Assimp REQUIRED)
 set(CHAPTERS
     1.getting_started
     2.lighting
+    3.model_loading
 )
 
 set(1.getting_started
@@ -63,6 +64,10 @@ set(2.lighting
         6.lighting_caster_point
         7.lighting_caster_spot
         8.multiple_lights
+)
+
+set(3.model_loading
+        1.model_loading
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
