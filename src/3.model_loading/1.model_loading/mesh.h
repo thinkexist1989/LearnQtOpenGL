@@ -24,16 +24,21 @@ struct Vertex
     QVector3D Bitangent;
 };
 
+struct Texture {
+    unsigned int id;
+    std::string type;
+    std::string path;
+};
+
 
 class Mesh: protected QOpenGLFunctions
 {
-    Q_OBJECT
 public:
-    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<QOpenGLTexture> textures);
-
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
-    std::vector<QOpenGLTexture> textures;
+    std::vector<Texture> textures;
+
+    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
 
     void Draw(QOpenGLShaderProgram* psp);
 

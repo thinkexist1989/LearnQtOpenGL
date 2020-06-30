@@ -8,6 +8,8 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLTexture>
 
+#include <model.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
@@ -52,6 +54,8 @@ public:
 
     QVector3D lightPos;
     QOpenGLShaderProgram *pspLight;
+
+    Model ourModel;
 
 private:
     Ui::Widget *ui;
