@@ -2,7 +2,7 @@
 #define WIDGET_H
 
 #include <QOpenGLWidget>
-#include <QOpenGLExtraFunctions>
+#include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
@@ -14,7 +14,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
 
-class Widget : public QOpenGLWidget
+class Widget : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 

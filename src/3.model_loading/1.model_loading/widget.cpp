@@ -47,8 +47,9 @@ void Widget::initializeGL()
 {
     // Set up the rendering context, load shaders and other resources, etc.:
     //    initializeOpenGLFunctions();
-    QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
-    f->initializeOpenGLFunctions();
+//    QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
+//    f->initializeOpenGLFunctions();
+    initializeOpenGLFunctions();
 
     psp = new QOpenGLShaderProgram;
     psp->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/model_loading.vert");
@@ -56,16 +57,18 @@ void Widget::initializeGL()
     psp->link();
     psp->bind();
 
-    f->glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 
 
-    f->glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
 
     int nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
     qDebug() <<"Maximum nr of vertex attributes supported: " << nrAttributes;
 
-    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
+//    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
+//    ourModel = new Model("D:/GitHub/LearnOpenGL/resources/objects/nanosuit/nanosuit.obj");
+    ourModel = new Model("C:/Users/think/Desktop/tx60l.dae");
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [=]{update();});
@@ -86,20 +89,13 @@ void Widget::setPolygonLineMode(bool b)
 
 void Widget::resizeGL(int w, int h)
 {
-    // Update projection matrix and other size related settings:
-    //        m_projection.setToIdentity();
-    //        m_projection.perspective(45.0f, w / float(h), 0.01f, 100.0f);
-    QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
-    f->glViewport(0, 0, w, h);
+    glViewport(0, 0, w, h);
 }
 
 void Widget::paintGL()
 {
-    // Draw the scene:
-    QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
-
-    f->glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-    f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     psp->bind();
 

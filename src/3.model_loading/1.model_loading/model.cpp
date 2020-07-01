@@ -5,19 +5,23 @@
 
 Model::Model(const std::string &path, bool gamma) : gammaCorrection(gamma)
 {
+    initializeOpenGLFunctions();
     loadModel(path);
 }
 
 void Model::Draw(QOpenGLShaderProgram *psp)
 {
+    std::cout <<"meshes size is: " <<meshes.size() << std::endl;
     for(unsigned int i = 0; i < meshes.size(); i++)
+    {
         meshes[i].Draw(psp);
+    }
 }
 
 void Model::loadModel(const std::string &path)
 {
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate |aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_CalcTangentSpace);
 
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode )
     {
@@ -29,6 +33,7 @@ void Model::loadModel(const std::string &path)
     std::cout << "model directory is: " << directory << std::endl;
 
     processNode(scene->mRootNode, scene);
+//    std::cout << "load model OK!" << std::endl;
 }
 
 void Model::processNode(aiNode *node, const aiScene *scene)
@@ -49,6 +54,7 @@ void Model::processNode(aiNode *node, const aiScene *scene)
 
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 {
+    std::cout << "Processing Meshes!" << std::endl;
     // data to fill
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
@@ -125,6 +131,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 
     // return a mesh object created from the extracted mesh data
     //            return Mesh(vertices, indices, textures);
+    std::cout << "Process Meshes OK!" << std::endl;
     return Mesh(vertices, indices, textures);
 }
 
@@ -160,16 +167,13 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 }
 
 
-unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma)
+unsigned int Model::TextureFromFile(const char *path, const std::string &directory, bool gamma)
 {
-    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
-
     std::string filename = std::string(path);
     filename = directory + '/' + filename;
-    std::cout << "texture filename is: " << filename << std::endl;
 
     unsigned int textureID;
-    f->glGenTextures(1, &textureID);
+    glGenTextures(1, &textureID);
 
     int width, height, nrComponents;
     unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
@@ -183,16 +187,16 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
         else if (nrComponents == 4)
             format = GL_RGBA;
 
-        f->glBindTexture(GL_TEXTURE_2D, textureID);
-        f->glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 
-        f->glGenerateMipmap(GL_TEXTURE_2D);
+        glGenerateMipmap(GL_TEXTURE_2D);
 
 
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         stbi_image_free(data);
     }
@@ -202,5 +206,6 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
         stbi_image_free(data);
     }
 
+    std::cout << "texture filename is: " << filename << std::endl;
     return textureID;
 }

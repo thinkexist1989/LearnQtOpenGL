@@ -1,4 +1,5 @@
 #include "mesh.h"
+#include <iostream>
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
 {
@@ -7,10 +8,13 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
     this->textures = textures;
 
     setupMesh();
+    std::cout << "Setup Mesh OK!" << std::endl;
 }
 
 void Mesh::setupMesh()
 {
+    initializeOpenGLFunctions();
+
     vao = new QOpenGLVertexArrayObject;
     if(vao->create())
         vao->bind();
