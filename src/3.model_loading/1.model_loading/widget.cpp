@@ -20,7 +20,7 @@ Widget::Widget(QWidget *parent)
     , yaw(-90) //当yaw= 0时，在xz平面的分量指向x轴，而初始值应该指向-z，所以旋转-90度
     , pitch(0)
     , fov(45.0)
-    , lightPos(1.2, 1.0, 2.0)
+//    , lightPos(1.2, 1.0, 2.0)
     , ourModel("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj")
     , ui(new Ui::Widget)
 {
@@ -55,7 +55,7 @@ void Widget::initializeGL()
     psp->link();
     psp->bind();
 
-    f->glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    f->glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 
 
     f->glEnable(GL_DEPTH_TEST);

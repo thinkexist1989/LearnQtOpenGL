@@ -23,10 +23,10 @@ void Mesh::setupMesh()
     if(veo->create())
         veo->bind();
 
-    vbo->allocate(&vertices[0], sizeof(vertices));
+    vbo->allocate(&vertices[0], vertices.size()*sizeof(Vertex));
     vbo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
-    veo->allocate(&indices[0], sizeof(indices));
+    veo->allocate(&indices[0], vertices.size()*sizeof(unsigned int));
     veo->setUsagePattern(QOpenGLBuffer::StaticDraw);
 
     glEnableVertexAttribArray(0);

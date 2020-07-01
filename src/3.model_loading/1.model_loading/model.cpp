@@ -5,7 +5,7 @@
 
 Model::Model(const std::string &path, bool gamma) : gammaCorrection(gamma)
 {
-
+    loadModel(path);
 }
 
 void Model::Draw(QOpenGLShaderProgram *psp)
@@ -157,15 +157,15 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 }
 
 
-unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma)
+unsigned int Model::TextureFromFile(const char *path, const std::string &directory, bool gamma)
 {
-    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
+//    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
 
     std::string filename = std::string(path);
     filename = directory + '/' + filename;
 
     unsigned int textureID;
-    f->glGenTextures(1, &textureID);
+    glGenTextures(1, &textureID);
 
     int width, height, nrComponents;
     unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
@@ -179,16 +179,16 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
         else if (nrComponents == 4)
             format = GL_RGBA;
 
-        f->glBindTexture(GL_TEXTURE_2D, textureID);
-        f->glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 
-        f->glGenerateMipmap(GL_TEXTURE_2D);
+        glGenerateMipmap(GL_TEXTURE_2D);
 
 
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         stbi_image_free(data);
     }
