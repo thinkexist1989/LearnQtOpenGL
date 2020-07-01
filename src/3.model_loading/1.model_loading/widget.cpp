@@ -21,7 +21,6 @@ Widget::Widget(QWidget *parent)
     , pitch(0)
     , fov(45.0)
 //    , lightPos(1.2, 1.0, 2.0)
-    , ourModel("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj")
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
@@ -49,6 +48,8 @@ void Widget::initializeGL()
     // Set up the rendering context, load shaders and other resources, etc.:
     //    initializeOpenGLFunctions();
     QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
+    f->initializeOpenGLFunctions();
+
     psp = new QOpenGLShaderProgram;
     psp->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/model_loading.vert");
     psp->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/model_loading.frag");
@@ -63,6 +64,8 @@ void Widget::initializeGL()
     int nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
     qDebug() <<"Maximum nr of vertex attributes supported: " << nrAttributes;
+
+    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [=]{update();});
@@ -119,7 +122,7 @@ void Widget::paintGL()
 
     glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
 
-    ourModel.Draw(psp);
+    ourModel->Draw(psp);
 
 }
 

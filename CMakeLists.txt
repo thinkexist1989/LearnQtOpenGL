@@ -33,6 +33,8 @@ find_package(Qt5 COMPONENTS Gui Widgets OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Boost COMPONENTS date_time REQUIRED)
 find_package(Assimp REQUIRED)
+message("Assimp include dir is: ${ASSIMP_INCLUDE_DIRS}")
+message("Assimp lib dir is: ${ASSIMP_LIBRARY_DIRS}")
 
 set(CHAPTERS
     1.getting_started
@@ -71,14 +73,14 @@ set(3.model_loading
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${ASSIMP_INCLUDE_DIRS})
+#include_directories()
 link_directories(${ASSIMP_LIBRARY_DIRS})
 
 add_library(stb_image "src/stb_image.cpp")
 set(LIBS stb_image ${ASSIMP_LIBRARIES})
 
 if(WIN32)
-    set(LIBS ${LIBS} Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time ) #注意，windows下import target只有OpenGL::GL
+    set(LIBS ${LIBS} Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::GL Boost::date_time) #注意，windows下import target只有OpenGL::GL
 elseif(UNIX AND NOT APPLE)
     set(LIBS ${LIBS} Qt5::Gui Qt5::Widgets Qt5::OpenGL OpenGL::OpenGL Boost::date_time)
 else()
@@ -96,7 +98,7 @@ foreach(CHAPTER ${CHAPTERS})
         )
         set(NAME "${CHAPTER}_${DEMO}")
         add_executable(${NAME} ${SOURCE})
-        target_include_directories(${NAME} PUBLIC "src/${CHAPTER}/${DEMO}/")
+        target_include_directories(${NAME} PUBLIC "src/${CHAPTER}/${DEMO}/" ${ASSIMP_INCLUDE_DIRS})
         target_link_libraries(${NAME} ${LIBS})
     endforeach(DEMO)
 endforeach(CHAPTER)

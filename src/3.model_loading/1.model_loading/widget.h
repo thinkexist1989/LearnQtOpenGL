@@ -55,7 +55,7 @@ public:
     QVector3D lightPos;
     QOpenGLShaderProgram *pspLight;
 
-    Model ourModel;
+    Model* ourModel;
 
 private:
     Ui::Widget *ui;

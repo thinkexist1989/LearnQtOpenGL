@@ -12,6 +12,8 @@
 
 #include <QOpenGLFunctions>
 
+unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma = false);
+
 class Model: protected QOpenGLFunctions
 {
 public:
@@ -23,8 +25,6 @@ public:
 
     Model(std::string const &path, bool gamma = false);
     void Draw(QOpenGLShaderProgram* psp);
-
-    unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma = false);
 
 private:
     void loadModel(const std::string &path);

@@ -26,6 +26,9 @@ void Model::loadModel(const std::string &path)
     }
 
     directory = path.substr(0, path.find_last_of('/'));
+    std::cout << "model directory is: " << directory << std::endl;
+
+    processNode(scene->mRootNode, scene);
 }
 
 void Model::processNode(aiNode *node, const aiScene *scene)
@@ -157,15 +160,16 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 }
 
 
-unsigned int Model::TextureFromFile(const char *path, const std::string &directory, bool gamma)
+unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma)
 {
-//    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
+    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
 
     std::string filename = std::string(path);
     filename = directory + '/' + filename;
+    std::cout << "texture filename is: " << filename << std::endl;
 
     unsigned int textureID;
-    glGenTextures(1, &textureID);
+    f->glGenTextures(1, &textureID);
 
     int width, height, nrComponents;
     unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
@@ -179,16 +183,16 @@ unsigned int Model::TextureFromFile(const char *path, const std::string &directo
         else if (nrComponents == 4)
             format = GL_RGBA;
 
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        f->glBindTexture(GL_TEXTURE_2D, textureID);
+        f->glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 
-        glGenerateMipmap(GL_TEXTURE_2D);
+        f->glGenerateMipmap(GL_TEXTURE_2D);
 
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         stbi_image_free(data);
     }
