@@ -57,7 +57,7 @@ void Widget::initializeGL()
     psp->link();
     psp->bind();
 
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 
     glEnable(GL_DEPTH_TEST);
@@ -66,9 +66,9 @@ void Widget::initializeGL()
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
     qDebug() <<"Maximum nr of vertex attributes supported: " << nrAttributes;
 
-//    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
+    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
 //    ourModel = new Model("D:/GitHub/LearnOpenGL/resources/objects/nanosuit/nanosuit.obj");
-    ourModel = new Model("C:/Users/think/Desktop/tx60l.dae");
+//    ourModel = new Model("C:/Users/think/Desktop/xx.STL");
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [=]{update();});
@@ -94,7 +94,7 @@ void Widget::resizeGL(int w, int h)
 
 void Widget::paintGL()
 {
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     psp->bind();

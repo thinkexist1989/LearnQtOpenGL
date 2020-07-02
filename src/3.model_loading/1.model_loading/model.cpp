@@ -11,7 +11,7 @@ Model::Model(const std::string &path, bool gamma) : gammaCorrection(gamma)
 
 void Model::Draw(QOpenGLShaderProgram *psp)
 {
-    std::cout <<"meshes size is: " <<meshes.size() << std::endl;
+//    std::cout <<"meshes size is: " <<meshes.size() << std::endl;
     for(unsigned int i = 0; i < meshes.size(); i++)
     {
         meshes[i].Draw(psp);
@@ -60,6 +60,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     std::vector<unsigned int> indices;
     std::vector<Texture> textures;
 
+    std::cout <<"processMesh::mesh::mNumVertices " << mesh->mNumVertices << std::endl;
     // walk through each of the mesh's vertices
     for(unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
@@ -78,6 +79,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
         // texture coordinates
         if(mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
         {
+            std::cout <<"processMesh::mesh::mTextureCoords " << mesh->mTextureCoords[0] << std::endl;
             QVector2D vec;
             // a vertex can contain up to 8 different texture coordinates. We thus make the assumption that we won't
             // use models where a vertex can have multiple texture coordinates so we always take the first set (0).
@@ -86,7 +88,10 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
             vertex.TexCoords = vec;
         }
         else
+        {
+//            std::cout <<"processMesh::mesh::mTextureCoords::else" << std::endl;
             vertex.TexCoords = QVector2D(0.0f, 0.0f);
+        }
         // tangent
         vector.setX(mesh->mTangents[i].x);
         vector.setY(mesh->mTangents[i].y);
@@ -142,6 +147,7 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
     {
         aiString str;
         mat->GetTexture(type, i, &str);
+        std::cout << "Get Texture: " << str.C_Str() << std::endl;
         // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
         bool skip = false;
         for(unsigned int j = 0; j < textures_loaded.size(); j++)
