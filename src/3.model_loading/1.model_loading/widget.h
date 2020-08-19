@@ -8,6 +8,8 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLTexture>
 
+#include <QTime>
+
 #include <model.h>
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +40,10 @@ public:
     int uniGreen;
 
     void setPolygonLineMode(bool b);
+    void setJointValue(int no, float value) {
+        jointAngles[no] = value;
+    }
+
     int PolygonMode;
 
     QVector3D cameraPos;
@@ -56,6 +62,18 @@ public:
     QOpenGLShaderProgram *pspLight;
 
     Model* ourModel;
+    Model* ourModel2;
+    Model* ourModel3;
+    Model* ourModel4;
+    Model* ourModel5;
+    Model* ourModel6;
+    Model* ourModel7;
+
+    QTime t;
+
+    std::vector<float> jointAngles;
+
+
 
 private:
     Ui::Widget *ui;

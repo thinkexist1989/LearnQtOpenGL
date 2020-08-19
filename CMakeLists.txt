@@ -1,5 +1,5 @@
 #cmake 3.10之后OpenGL才有import target
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.17)
 
 project(LearnQtOpenGL LANGUAGES CXX)
 
@@ -32,6 +32,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Gui Widgets OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Boost COMPONENTS date_time REQUIRED)
+message("${Boost_INCLUDE_DIRS}")
+message("${Boost_LIBRARY_DIRS}")
 find_package(Assimp REQUIRED)
 message("Assimp include dir is: ${ASSIMP_INCLUDE_DIRS}")
 message("Assimp lib dir is: ${ASSIMP_LIBRARY_DIRS}")

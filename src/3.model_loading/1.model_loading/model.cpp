@@ -21,7 +21,7 @@ void Model::Draw(QOpenGLShaderProgram *psp)
 void Model::loadModel(const std::string &path)
 {
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_CalcTangentSpace);
+    const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace | aiProcess_GenSmoothNormals);
 
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode )
     {
@@ -92,16 +92,16 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 //            std::cout <<"processMesh::mesh::mTextureCoords::else" << std::endl;
             vertex.TexCoords = QVector2D(0.0f, 0.0f);
         }
-        // tangent
-        vector.setX(mesh->mTangents[i].x);
-        vector.setY(mesh->mTangents[i].y);
-        vector.setZ(mesh->mTangents[i].z);
-        vertex.Tangent = vector;
-        // bitangent
-        vector.setX(mesh->mBitangents[i].x);
-        vector.setY(mesh->mBitangents[i].y);
-        vector.setZ(mesh->mBitangents[i].z);
-        vertex.Bitangent = vector;
+//        // tangent
+//        vector.setX(mesh->mTangents[i].x);
+//        vector.setY(mesh->mTangents[i].y);
+//        vector.setZ(mesh->mTangents[i].z);
+//        vertex.Tangent = vector;
+//        // bitangent
+//        vector.setX(mesh->mBitangents[i].x);
+//        vector.setY(mesh->mBitangents[i].y);
+//        vector.setZ(mesh->mBitangents[i].z);
+//        vertex.Bitangent = vector;
         vertices.push_back(vertex);
     }
     // now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.

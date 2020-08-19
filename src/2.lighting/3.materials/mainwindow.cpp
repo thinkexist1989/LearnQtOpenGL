@@ -1,3 +1,6 @@
+
+#include <src/3.model_loading/1.model_loading/mainwindow.h>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -14,7 +17,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_checkBox_stateChanged(int state) {
+void MainWindow::on_checkBox_stateChanged(int state)
+{
     qDebug() << "state is: " << state;
     if(state == 0)
     {
@@ -25,5 +29,3 @@ void MainWindow::on_checkBox_stateChanged(int state) {
         ui->openGLWidget->setPolygonLineMode(true);
     }
 }
-
-

@@ -1,10 +1,9 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include <boost/date_time.hpp>
+//#include <boost/date_time.hpp>
 #include <QTimer>
 #include <stb_image.h>
 #include <QMatrix4x4>
-#include <QTime>
 #include <random>
 #include <QKeyEvent>
 #include <QtMath>
@@ -36,6 +35,9 @@ Widget::Widget(QWidget *parent)
 
     lastMousePos.setX(width()/2.0);
     lastMousePos.setY(height()/2.0);
+
+    t.start();
+    jointAngles.resize(6);
 }
 
 Widget::~Widget()
@@ -66,9 +68,16 @@ void Widget::initializeGL()
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
     qDebug() <<"Maximum nr of vertex attributes supported: " << nrAttributes;
 
-    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
+//    ourModel = new Model("D:/GitHub/LearnQtOpenGL/resources/objects/backpack/backpack.obj");
 //    ourModel = new Model("D:/GitHub/LearnOpenGL/resources/objects/nanosuit/nanosuit.obj");
 //    ourModel = new Model("C:/Users/think/Desktop/xx.STL");
+    ourModel = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\base.dae"); // base_link
+    ourModel2 = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\shoulder.dae"); // shoulder
+    ourModel3 = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\upperarm.dae"); // upperarm
+    ourModel4 = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\forearm.dae"); // forearm
+    ourModel5 = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\wrist1.dae"); // wrist1
+    ourModel6 = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\wrist2.dae"); // wrist2
+    ourModel7 = new Model("C:\\Users\\think\\Desktop\\universal_robot-melodic-devel\\ur_e_description\\meshes\\ur5e\\visual\\wrist3.dae"); // wrist3
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [=]{update();});
@@ -97,6 +106,8 @@ void Widget::paintGL()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
+
     psp->bind();
 
     QMatrix4x4 view;
@@ -111,14 +122,41 @@ void Widget::paintGL()
 
 //    psp->setUniformValue("viewPos", cameraPos);
     QMatrix4x4 model;
-    model.translate(0.0f, 0.0f, 0.0f);
 //    model.rotate(20.0f, rotAxis[i]);
-    model.scale(1.0f, 1.0f, 1.0f);
+    model.scale(0.001f, 0.001f, 0.001f);
+    model.translate(0.0f, 0.0f, 0.0f);
     psp->setUniformValue("model", model);
-
-    glPolygonMode(GL_FRONT_AND_BACK, static_cast<GLenum>(PolygonMode));
-
     ourModel->Draw(psp);
+
+    model.translate(0.0f, 163.0f, 0.0f);
+    model.rotate(jointAngles[0],0,1,0);
+    psp->setUniformValue("model", model);
+    ourModel2->Draw(psp);
+
+    model.translate(0.0, 0.0, 138.0);
+    model.rotate(jointAngles[1], 0, 0, 1);
+    psp->setUniformValue("model", model);
+    ourModel3->Draw(psp);
+
+    model.translate(0.0, 425.0, -131.0);
+    model.rotate(jointAngles[2], 0, 0, 1);
+    psp->setUniformValue("model", model);
+    ourModel4->Draw(psp);
+
+    model.translate(0.0, 392.0, 0.0);
+    model.rotate(jointAngles[3], 0, 0, 1);
+    psp->setUniformValue("model", model);
+    ourModel5->Draw(psp);
+
+    model.translate(0.0, 0.0, 127.0);
+    model.rotate(jointAngles[4], 0, 1, 0);
+    psp->setUniformValue("model", model);
+    ourModel6->Draw(psp);
+
+    model.translate(0.0, 100.0, 0.0);
+    model.rotate(jointAngles[5], 0, 0, 1);
+    psp->setUniformValue("model", model);
+    ourModel7->Draw(psp);
 
 }
 
